@@ -20,6 +20,3 @@ class Game:
         self.screen.window.protocol("WM_DELETE_WINDOW", self.close_window)  # Appelle la fonction quand on ferme la fenêtre
         if self.running:
             self.screen.update()    #Met à jour l'affichage
-
-#Testttt
-
