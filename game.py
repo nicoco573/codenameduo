@@ -21,3 +21,5 @@ class Game:
         if self.running:
             self.screen.update()    #Met à jour l'affichage
 
+#Testttt
+
