@@ -1,4 +1,4 @@
-Voici notre programme du codename duo !
+Voici notre programme du CodeName Duo !
 
 En voici le sénario:
 
