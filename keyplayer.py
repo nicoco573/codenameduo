@@ -56,7 +56,7 @@ class KeyPlayer:
         self.point :int = 0         #Points du joueur
     
     def choose_agents(self):
-        """Choisir aléatoirement 4 agents et 1 assassin parmi la liste de mots"""
+        """L'ordinateur choisit aléatoirement 4 agents et 1 assassin parmi la liste de mots, le jouer qui doit les trouver ne les voit pas"""
         self.agents = []
         already_choose = []
         while len(self.agents) != 4:
@@ -69,4 +69,5 @@ class KeyPlayer:
             choice = random.choice(self.all_words)
             if choice not in already_choose:
                 self.assassin = choice
+
                 already_choose.append(choice)
