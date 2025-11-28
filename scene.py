@@ -16,6 +16,12 @@ class Scene:
         self.name = name
         
         self.clue :str | None = clue    #Indice donné par le joueur actif
+
+    def update(self):
+        """Met à jour l'affichage, efface/redessine affin d'afficher les bonnes choses"""
+        self.canva.delete("all")    #efface tous les éléments présents sur le canva
+
+        self.current_scene.draw()   #dessine les nouveaux éléments
     
     def draw(self):
         """Dessine la scène"""
@@ -209,8 +215,5 @@ class Screen:
         
         self.current_scene :Scene = Scene(self.canva, self, "menu") #scène acctuelle, celle qui s'affiche
     
-    def update(self):
-        """Met à jour l'affichage, efface/redessine affin d'afficher les bonnes choses"""
-        self.canva.delete("all")    #efface tous les éléments présents sur le canva
+    
 
-        self.current_scene.draw()   #dessine les nouveaux éléments
