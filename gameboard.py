@@ -11,8 +11,6 @@ class GameBoard:
         
         self.words_in_game :list[str] | None = None
         
-        self.widgets :list = []
-        
         self.cards :list[dict] = []
         
         # print("NOUVEAU GAMEBOARD CRÉÉ")
@@ -93,18 +91,12 @@ class GameBoard:
         # print(key_player.agents)
         # print(self.player1.agents)
         agents = tkint.Label(font=('Arial', 13), text=f"Agents à faire deviner:\n- {key_player.agents[0]}\n- {key_player.agents[1]}\n- {key_player.agents[2]}\n- {key_player.agents[3]}", background='lightgrey', fg='green', justify='left')
-        self.widgets.append(agents)
+        self.scene.widgets.append(agents)
         agents.place(x=50,y=100,anchor='nw')
         assassin = tkint.Label(font=('Arial', 13), text=f"Assassin:\n- {key_player.assassin}", background='lightgrey', fg='red', justify='left')
-        self.widgets.append(assassin)
+        self.scene.widgets.append(assassin)
         assassin.place(x=300,y=100,anchor='nw')
     
-    
-    def destroy_widgets(self):
-        """Détruit les widgets crées par le gameboard"""
-        for widget in self.widgets:
-            widget.destroy()
-        self.widgets.clear()
     
     
     def Click_Button(self, word:str, index:int, player:int):
@@ -126,6 +118,8 @@ class GameBoard:
                 self.scene.canva.create_rectangle((220,440),(420,480), fill="lightgrey", tag="info")
                 self.scene.canva.create_text((320, 460), text="Bravo !", font=("Arial", 15,'bold'), fill="green", tag="info")
                 self.player1.point += 1
+                if self.player1.point >= 4:
+                    self.scene.change_scene("game1")
                 print(self.player1.point)
                 
             
@@ -152,6 +146,8 @@ class GameBoard:
                 self.scene.canva.create_rectangle((220,440),(420,480), fill="lightgrey", tag="info")
                 self.scene.canva.create_text((320, 460), text="Bravo !", font=("Arial", 15,'bold'), fill="green", tag="info")
                 self.player2.point += 1
+                if self.player2.point >= 4:
+                    self.scene.change_scene("game2")
                 print(self.player2.point)
                 
             
@@ -162,6 +158,7 @@ class GameBoard:
             else:
                 self.scene.change_scene("mistake2")
             
+            print(self.player1.point, self.player2.point,"\n",self.player1.loose, self.player2.loose)
             # Conditions d'arrêt du jeux
             if self.player1.point == 4 and self.player2.point == 4:
                 self.scene.change_scene("endgame")
